@@ -337,6 +337,7 @@ while True:
         break
     elif Easycontrols == "no" or Easycontrols == "n":
         Easycontrols = False
+        Easycontrolschannel = ""
         break
     else:
         cls()
