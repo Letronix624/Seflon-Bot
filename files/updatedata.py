@@ -3,7 +3,6 @@ import os
 from typing import Generic
 pydir = os.path.dirname(os.path.realpath(__file__))
 def cls(): os.system("cls")
-os.system("title SMSDL Setup.")
 print("Hello and welcome to my Discord bot called: Seflon Minecraft Server Discord Link.")
 input("----------ENTER----------                    1/6")
 cls()
@@ -22,7 +21,11 @@ cls()
 print("This program will start asking you now. Be sure to put in the right information or the program will fail.")
 input("----------ENTER----------                    6/6")
 cls()
-if os.listdir(pydir + "\profiles") == []:
+profilesbefore = True
+for badatnames in os.listdir(pydir + "\profiles"):
+    if badatnames.endswith(".json"):
+        profilesbefore = False
+if profilesbefore:
     print("You haven't created any profiles before. Press enter to create a new profile.")
     input()
 else:
