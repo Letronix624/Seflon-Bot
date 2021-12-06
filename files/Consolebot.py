@@ -60,8 +60,7 @@ async def on_ready():
         activeserverinfo.start() 
     except:
         return
-    await client.change_presence(status=discord.Status.online)
-    await client.change_presence(activity=discord.Game(name="Hosting a Minecraft server called: \"" + Servername + "\". For help do server_help"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="Hosting a Minecraft server called: \"" + Servername + "\". For help do server_help"))
     channel = client.get_channel(channelcode)
     await channel.purge(limit=999)
     channel = client.get_channel(channelcode)
@@ -91,8 +90,7 @@ async def on_message(message):
         cls()
         await channel.send("Server closed.. To start it up again type \"server_start\".")
         print("currently inactive")
-        await client.change_presence(status=discord.Status.idle)
-        await client.change_presence(activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
         serveractive = False
     elif msg == "server_reset":
         await channel.send("Are you really sure you want to reset the World? This will generate a completely new world for this server. This command is very risky. To proceed type \"server_reset_confirm_meant_delete_the_world_already_justdoitalready\" in the chat. Say no to undo this step.")
@@ -109,8 +107,7 @@ async def on_message(message):
         shutil.rmtree(directory + "\world_the_end")
         await channel.send("World got reset. To start up again type \"server_start\".")
         serveractive = False
-        await client.change_presence(status=discord.Status.idle)
-        await client.change_presence(activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
     elif msg == "no":
         deletionconfirmation = False
     elif msg == "restart" or msg == "server_restart":
