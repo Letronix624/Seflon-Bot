@@ -28,8 +28,28 @@ except:
     time.sleep(1)
     cls()
     import updatedata
-    rawestdata = open("E:\Discord\data.json", "r")
 data = json.load(rawestdata)
+try:
+    if data["Auth id"] == "":
+        print("You haven't inserted an Auth id.")
+        input()
+        quit()
+    if data["Console channel"] == "":
+        print("You haven't inserted an channel id.")
+        input()
+        quit()
+    if data["Easy controls"]:
+        cls()
+    if data["Easy controls channel"] == "" and data['Easy controls']:
+        print("You haven't inserted an Easy controls channel, even though you set Easy controls on.")
+        input()
+        quit()
+except:
+    print("Outdated profile. Please create a new profile. Open \"2. Configure Bot\" or \"updatedata.py\" and create a new profile.")
+    input()
+    quit()
+Easycontrols = data["Easy controls"]
+Easycontrolschannel = data["Easy controls channel"]
 rawestdata.close()
 serveractive = False
 client = discord.Client()
@@ -60,7 +80,7 @@ async def on_ready():
         activeserverinfo.start() 
     except:
         return
-    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="Hosting a Minecraft server called: \"" + Servername + "\". For help do server_help"))
+    await client.change_presence(status=discord.Status.online, activity=discord.Game(name="Hosting a Minecraft server called: \"" + Servername + "\". For help do server_help"), afk=False)
     channel = client.get_channel(channelcode)
     await channel.purge(limit=999)
     channel = client.get_channel(channelcode)
@@ -90,7 +110,7 @@ async def on_message(message):
         cls()
         await channel.send("Server closed.. To start it up again type \"server_start\".")
         print("currently inactive")
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""), afk=True)
         serveractive = False
     elif msg == "server_reset":
         await channel.send("Are you really sure you want to reset the World? This will generate a completely new world for this server. This command is very risky. To proceed type \"server_reset_confirm_meant_delete_the_world_already_justdoitalready\" in the chat. Say no to undo this step.")
@@ -107,7 +127,7 @@ async def on_message(message):
         shutil.rmtree(directory + "\world_the_end")
         await channel.send("World got reset. To start up again type \"server_start\".")
         serveractive = False
-        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""))
+        await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="Idle. For help do \"server_help\" and to start the server do \"server_start\""), afk=True)
     elif msg == "no":
         deletionconfirmation = False
     elif msg == "restart" or msg == "server_restart":
@@ -144,7 +164,11 @@ async def on_message(message):
         print(message.author, "has issued the command:", command)
         mcsession.stdin.write(bytes(command + "\r\n", "ascii"))
         mcsession.stdin.flush()
+'''
+@client.event
+async def on_reaction_add(reaction, user):
+    if reaction.
+'''
+
 activeserverinfo = threading.Thread(target=activeserverinfodef)
-
-
 client.run(authcode)

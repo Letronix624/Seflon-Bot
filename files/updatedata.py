@@ -2,12 +2,23 @@ import json
 import os
 from typing import Generic
 pydir = os.path.dirname(os.path.realpath(__file__))
+"""
+Servername str
+Authid str
+Consolechannel int
+Easycontrols bool
+Easycontrolschannel int
+Serverdirectory str
+Givenram int
+Jarname automatic str
+"""
+
 def cls(): os.system("cls")
 os.system("title Profile Setup")
 print("Hello and welcome to my Discord bot called: Seflon Minecraft Server Discord Link.")
 input("----------ENTER----------                    1/6")
 cls()
-print("This is the first setup of the bot. This setup will let the bot know how the server is called, what id the bot has, what channel the bot should be linked to, where the server is located, how much RAM you would like your server to use and if you would like the minecraft server to show the GUI.")
+print("This is the first setup of the bot. This setup will let the bot know how the server is called, what id the bot has, what channel the bot should be linked to, where the server is located, how much RAM you would like your server to use and if you would like to have an easy controls channel.")
 input("----------ENTER----------                    2/6")
 cls()
 print("You can use this Setup to update this Information again and again.")
@@ -105,6 +116,8 @@ else:
                 Servername = data["Server name"]
                 Authid = data["Auth id"]
                 Consolechannel = data["Console channel"]
+                Easycontrols = data["Easy controls"]
+                Easycontrolschannel = data["Easy controls channel"]
                 Serverdirectory = data["Server directory"]
                 Givenram = data["Given ram"]
                 Jarname = data["Jar name"]
@@ -113,8 +126,10 @@ else:
                     print("1. Server Name -->" + Servername)
                     print("2. Auth ID -->" + Authid)
                     print("3. Console Channel ID -->" + str(Consolechannel))
-                    print("4. Server Directory -->" + Serverdirectory)
-                    print("5. Given RAM -->" + str(Givenram) + "GB")
+                    print("4. Easy controls -->" + str(Easycontrols))
+                    print("5. Easy controls channel -->" + str(Easycontrolschannel))
+                    print("6. Server Directory -->" + Serverdirectory)
+                    print("7. Given RAM -->" + str(Givenram) + "GB")
                     print()
                     print("What data do you want to change? Enter 1 to 6 to change. If done enter nothing and press enter.")
                     change = input()
@@ -123,6 +138,8 @@ else:
                         print("Server Name --> Currently changing...")
                         print("Auth ID -->" + Authid)
                         print("Console Channel ID -->" + str(Consolechannel))
+                        print("Easy controls -->" + str(Easycontrols))
+                        print("Easy controls channel -->" + str(Easycontrolschannel))
                         print("Server Directory -->" + Serverdirectory)
                         print("Given RAM -->" + str(Givenram) + "GB")
                         print()
@@ -134,6 +151,8 @@ else:
                         print("Server Name -->" + Servername)
                         print("Auth ID --> Currently changing")
                         print("Console Channel ID -->" + str(Consolechannel))
+                        print("Easy controls -->" + str(Easycontrols))
+                        print("Easy controls channel -->" + str(Easycontrolschannel))
                         print("Server Directory -->" + Serverdirectory)
                         print("Given RAM -->" + str(Givenram) + "GB")
                         print()
@@ -146,6 +165,8 @@ else:
                             print("Server Name -->" + Servername)
                             print("Auth ID -->" + Authid)
                             print("Console Channel ID --> Currently changing...")
+                            print("Easy controls -->" + str(Easycontrols))
+                            print("Easy controls channel -->" + str(Easycontrolschannel))
                             print("Server Directory -->" + Serverdirectory)
                             print("Given RAM -->" + str(Givenram) + "GB")
                             print()
@@ -164,6 +185,50 @@ else:
                             print("Server Name -->" + Servername)
                             print("Auth ID -->" + Authid)
                             print("Console Channel ID -->" + str(Consolechannel))
+                            print("Easy controls --> Currently changing...")
+                            print("Easy controls channel -->" + str(Easycontrolschannel))
+                            print("Server Directory -->" + Serverdirectory)
+                            print("Given RAM -->" + str(Givenram) + "GB")
+                            print()
+                            print("Do you want to have another channel where the bot sends an imbed, that contains server info like is it online? and player count. Yes or No")
+                            Easycontrols = input("yes/no >").lower()
+                            if Easycontrols == "yes" or Easycontrols == "y":
+                                Easycontrols = True
+                                break
+                            elif Easycontrols == "no" or Easycontrols == "n":
+                                Easycontrols = False
+                                break
+                            else:
+                                cls()
+                                print("Yes or No")
+                    elif change == "5":
+                        cls()
+                        while True:
+                            print("Server Name -->" + Servername)
+                            print("Auth ID -->" + Authid)
+                            print("Console Channel ID -->" + str(Consolechannel))
+                            print("Easy controls -->" + str(Consolechannel))
+                            print("Easy controls channel --> Currently changing...")
+                            print("Server Directory -->" + Serverdirectory)
+                            print("Given RAM -->" + str(Givenram) + "GB")
+                            print()
+                            print("What channel of your Discord server do you want to be the Easy controls? Be sure to make this channel only AND ONLY visible to people you trust. If you don't do that untrusted people could close the server.")
+                            print("To get this ID you must enter the Discord settings, go to Advanced and turn on Developer mode. After that you must right click the Easy contols channel and press \"Copy ID\".")
+                            Easycontrolschannel = input("--->")
+                            try:
+                                print(int(Consolechannel))
+                                break
+                            except:
+                                cls()
+                                print("This ID is made only out of numbers. You may have done something wrong.")
+                    elif change == "6":
+                        cls()
+                        while True:
+                            print("Server Name -->" + Servername)
+                            print("Auth ID -->" + Authid)
+                            print("Console Channel ID -->" + str(Consolechannel))
+                            print("Easy controls -->" + str(Easycontrols))
+                            print("Easy controls channel -->" + str(Easycontrolschannel))
                             print("Server Directory --> Currently changing...")
                             print("Given RAM -->" + str(Givenram) + "GB")
                             print()
@@ -180,12 +245,14 @@ else:
                             except:
                                 cls()
                                 print("This is not a valid directory. No jar file found.")
-                    elif change == "5":
+                    elif change == "7":
                         cls()
                         while True:
                             print("Server Name -->" + Servername)
                             print("Auth ID -->" + Authid)
                             print("Console Channel ID -->" + str(Consolechannel))
+                            print("Easy controls -->" + str(Easycontrols))
+                            print("Easy controls channel -->" + str(Easycontrolschannel))
                             print("Server Directory -->" + Serverdirectory)
                             print("Given RAM --> Currently changing...")
                             print()
@@ -205,6 +272,8 @@ else:
                         "Auth id": Authid,
                         "Console channel": int(Consolechannel),
                         "Server directory": Serverdirectory,
+                        "Easy controls": Easycontrols,
+                        "Easy controls channel": Easycontrolschannel,
                         "Given ram": int(Givenram),
                         "Jar name": Jarname
                     }
@@ -261,6 +330,42 @@ while True:
     print("Auth ID -->" + Authid)
     print("Console Channel ID -->" + str(Consolechannel))
     print()
+    print("Do you want to have another channel where the bot sends an imbed, that contains server info like is it online? and player count. Yes or No")
+    Easycontrols = input("yes/no >").lower()
+    if Easycontrols == "yes" or Easycontrols == "y":
+        Easycontrols = True
+        break
+    elif Easycontrols == "no" or Easycontrols == "n":
+        Easycontrols = False
+        break
+    else:
+        cls()
+        print("Yes or No")
+if Easycontrols:
+    cls()
+    while True:
+        print("Server Name -->" + Servername)
+        print("Auth ID -->" + Authid)
+        print("Console Channel ID -->" + str(Consolechannel))
+        print("Easy controls -->" + str(Consolechannel))
+        print()
+        print("What channel of your Discord server do you want to be the Easy controls? Be sure to make this channel only AND ONLY visible to people you trust. If you don't do that untrusted people could close the server.")
+        print("To get this ID you must enter the Discord settings, go to Advanced and turn on Developer mode. After that you must right click the Easy contols channel and press \"Copy ID\".")
+        Easycontrolschannel = input("--->")
+        try:
+            print(int(Consolechannel))
+            break
+        except:
+            cls()
+            print("This ID is made only out of numbers. You may have done something wrong.")
+cls()
+while True:
+    print("Server Name -->" + Servername)
+    print("Auth ID -->" + Authid)
+    print("Console Channel ID -->" + str(Consolechannel))
+    print("Easy controls -->" + str(Consolechannel))
+    print("Easy controls channel -->" + str(Easycontrolschannel))
+    print()
     print("In what directory have you saved the server?")
     print("You only have to put in something like this for me: \"E:\\Minecraft\\letronix\"")
     print("----------------------------------------------------Drive  Folder  Folder containing the server")
@@ -279,6 +384,8 @@ while True:
     print("Server Name -->" + Servername)
     print("Auth ID -->" + Authid)
     print("Console Channel ID -->" + str(Consolechannel))
+    print("Easy controls -->" + str(Consolechannel))
+    print("Easy controls channel -->" + str(Easycontrolschannel))
     print("Server Directory -->" + Serverdirectory)
     print()
     print("How much RAM would you like to give your server in GB? Whole numbers only.")
@@ -294,8 +401,10 @@ while True:
     print("1. Server Name -->" + Servername)
     print("2. Auth ID -->" + Authid)
     print("3. Console Channel ID -->" + str(Consolechannel))
-    print("4. Server Directory -->" + Serverdirectory)
-    print("5. Given RAM -->" + str(Givenram) + "GB")
+    print("4. Easy controls -->" + str(Easycontrols))
+    print("5. Easy controls channel -->" + str(Easycontrolschannel))
+    print("6. Server Directory -->" + Serverdirectory)
+    print("7. Given RAM -->" + str(Givenram) + "GB")
     print()
     print("Now Check above if you have made any mistakes. Press enter to continue or enter a number from 1 to 6 on what you want to change.")
     change = input()
@@ -304,6 +413,8 @@ while True:
         print("Server Name --> Currently changing...")
         print("Auth ID -->" + Authid)
         print("Console Channel ID -->" + str(Consolechannel))
+        print("Easy controls -->" + str(Consolechannel))
+        print("Easy controls channel -->" + str(Easycontrolschannel))
         print("Server Directory -->" + Serverdirectory)
         print("Given RAM -->" + str(Givenram) + "GB")
         print()
@@ -314,6 +425,8 @@ while True:
         print("Server Name -->" + Servername)
         print("Auth ID --> Currently changing")
         print("Console Channel ID -->" + str(Consolechannel))
+        print("Easy controls -->" + str(Consolechannel))
+        print("Easy controls channel -->" + str(Easycontrolschannel))
         print("Server Directory -->" + Serverdirectory)
         print()
         print("What is the Auth ID of the bot you will be using for this?")
@@ -325,6 +438,8 @@ while True:
             print("Server Name -->" + Servername)
             print("Auth ID -->" + Authid)
             print("Console Channel ID --> Currently changing...")
+            print("Easy controls -->" + str(Consolechannel))
+            print("Easy controls channel -->" + str(Easycontrolschannel))
             print("Server Directory -->" + Serverdirectory)
             print("Given RAM -->" + str(Givenram) + "GB")
             print()
@@ -343,6 +458,50 @@ while True:
             print("Server Name -->" + Servername)
             print("Auth ID -->" + Authid)
             print("Console Channel ID -->" + str(Consolechannel))
+            print("Easy controls --> Currently changing...")
+            print("Easy controls channel -->" + str(Easycontrolschannel))
+            print("Server Directory -->" + Serverdirectory)
+            print("Given RAM -->" + str(Givenram) + "GB")
+            print()
+            print("Do you want to have another channel where the bot sends an imbed, that contains server info like is it online? and player count. Yes or No")
+            Easycontrols = input("yes/no >").lower()
+            if Easycontrols == "yes" or Easycontrols == "y":
+                Easycontrols = True
+                break
+            elif Easycontrols == "no" or Easycontrols == "n":
+                Easycontrols = False
+                break
+            else:
+                cls()
+                print("Yes or No")
+    elif change == "5":
+        cls()
+        while True:
+            print("Server Name -->" + Servername)
+            print("Auth ID -->" + Authid)
+            print("Console Channel ID -->" + str(Consolechannel))
+            print("Easy controls -->" + str(Consolechannel))
+            print("Easy controls channel --> Currently changing...")
+            print("Server Directory -->" + Serverdirectory)
+            print("Given RAM -->" + str(Givenram) + "GB")
+            print()
+            print("What channel of your Discord server do you want to be the Easy controls? Be sure to make this channel only AND ONLY visible to people you trust. If you don't do that untrusted people could close the server.")
+            print("To get this ID you must enter the Discord settings, go to Advanced and turn on Developer mode. After that you must right click the Easy contols channel and press \"Copy ID\".")
+            Easycontrolschannel = input("--->")
+            try:
+                print(int(Consolechannel))
+                break
+            except:
+                cls()
+                print("This ID is made only out of numbers. You may have done something wrong.")
+    elif change == "6":
+        cls()
+        while True:
+            print("Server Name -->" + Servername)
+            print("Auth ID -->" + Authid)
+            print("Console Channel ID -->" + str(Consolechannel))
+            print("Easy controls -->" + str(Consolechannel))
+            print("Easy controls channel -->" + str(Easycontrolschannel))
             print("Server Directory --> Currently changing...")
             print("Given RAM -->" + str(Givenram) + "GB")
             print()
@@ -359,12 +518,14 @@ while True:
             except:
                 cls()
                 print("This is not a valid directory. No jar file found.")
-    elif change == "5":
+    elif change == "7":
         cls()
         while True:
             print("Server Name -->" + Servername)
             print("Auth ID -->" + Authid)
             print("Console Channel ID -->" + str(Consolechannel))
+            print("Easy controls -->" + str(Consolechannel))
+            print("Easy controls channel -->" + str(Easycontrolschannel))
             print("Server Directory -->" + Serverdirectory)
             print("Given RAM --> Currently changing...")
             print()
@@ -383,6 +544,8 @@ data = {
     "Auth id": Authid,
     "Console channel": int(Consolechannel),
     "Server directory": Serverdirectory,
+    "Easy controls": Easycontrols,
+    "Easy controls channel": Easycontrolschannel,
     "Given ram": int(Givenram),
     "Jar name": Jarname
 }
