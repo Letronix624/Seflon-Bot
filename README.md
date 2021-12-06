@@ -1,4 +1,4 @@
-# Seflon-Bot
+# Python-Seflon-Bot
 This is the source code to my Discord bot that connects to the Minecraft server console and commands its commands through a set Discord channel, that shouldn't be accessible to everyone.
 In order for this bot to work you would need a folder with an Minecraft server inside. At least a true Eula and a server.jar . I recommend to get these from papermc.io . Free.
 Be sure to only trust friends or clients to have access to the Discord channel, your bot is in.
