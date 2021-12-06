@@ -3,6 +3,7 @@ import os
 from typing import Generic
 pydir = os.path.dirname(os.path.realpath(__file__))
 def cls(): os.system("cls")
+os.system("title Profile Setup")
 print("Hello and welcome to my Discord bot called: Seflon Minecraft Server Discord Link.")
 input("----------ENTER----------                    1/6")
 cls()
