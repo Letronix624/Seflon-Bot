@@ -23,7 +23,7 @@ def cls(): os.system("cls")
 try:
     rawestdata = open(pydir + "\data.json", "r")
 except:
-    playsound(pydir + "\notification.mp3")
+    playsound.playsound(pydir + "\notification.mp3")
     print("data.json not found. Setting up a define tool to gain data.")
     time.sleep(1)
     cls()
@@ -73,7 +73,7 @@ channelcode = data["Console channel"]
 mcsession = Popen("java -Xmx" + str(gbram) + "G -Xms" + str(gbram) + "G -jar " + serverlaunchername + " nogui", cwd=directory, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 serveractive = True
 def notify():
-    playsound(pydir + "\notification.mp3")
+    playsound.playsound(pydir + "\notification.mp3")
 def activeserverinfodef():
     while True:
         output = str(mcsession.stdout.readline())[2:-5]
