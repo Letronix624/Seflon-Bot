@@ -5,8 +5,11 @@ import os
 import json
 import sys
 from subprocess import Popen, call, PIPE, STDOUT
-
-from discord import colour
+try:
+    import playsound
+except:
+    os.system("py -m pip install playsound")
+    import playsound
 try:
     import discord
 except:
@@ -20,6 +23,7 @@ def cls(): os.system("cls")
 try:
     rawestdata = open(pydir + "\data.json", "r")
 except:
+    playsound(pydir + "\notification.mp3")
     print("data.json not found. Setting up a define tool to gain data.")
     time.sleep(1)
     cls()
@@ -68,6 +72,8 @@ channelcode = data["Console channel"]
 
 mcsession = Popen("java -Xmx" + str(gbram) + "G -Xms" + str(gbram) + "G -jar " + serverlaunchername + " nogui", cwd=directory, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
 serveractive = True
+def notify():
+    playsound(pydir + "\notification.mp3")
 def activeserverinfodef():
     while True:
         output = str(mcsession.stdout.readline())[2:-5]
@@ -190,6 +196,7 @@ async def on_message(message):
             await channel.send("Server is still active.")
         else:
             await channel.send("Starting up...")
+            notify()
             serverinfo = discord.Embed(title="Easy Controls Panel, Server Status", description="Server = Starting...",color=0xE0B824)
             channe = client.get_channel(Easycontrolschannel)
             await channe.purge()
@@ -244,6 +251,7 @@ async def on_reaction_add(reaction, user):
             k = await channe.send(embed=serverinfo)
             await k.add_reaction("🟢")
         elif reaction.emoji == "🟢" and not serveractive:
+            notify()
             serverinfo = discord.Embed(title="Easy Controls Panel, Server Status", description="Server = Starting...",color=0xE0B824)
             channe = client.get_channel(Easycontrolschannel)
             await channe.purge()
