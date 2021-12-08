@@ -273,7 +273,7 @@ else:
                         "Console channel": int(Consolechannel),
                         "Server directory": Serverdirectory,
                         "Easy controls": Easycontrols,
-                        "Easy controls channel": Easycontrolschannel,
+                        "Easy controls channel": int(Easycontrolschannel),
                         "Given ram": int(Givenram),
                         "Jar name": Jarname
                     }
@@ -546,7 +546,7 @@ data = {
     "Console channel": int(Consolechannel),
     "Server directory": Serverdirectory,
     "Easy controls": Easycontrols,
-    "Easy controls channel": Easycontrolschannel,
+    "Easy controls channel": int(Easycontrolschannel),
     "Given ram": int(Givenram),
     "Jar name": Jarname
 }
